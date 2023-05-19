@@ -13,11 +13,7 @@
 #include "lwip/altcp_tcp.h"
 #include "lwip/altcp_tls.h"
 #include "lwip/dns.h"
-#include "hardware/structs/rosc.h"
 
-
-#include "lwip/pbuf.h"
-#include "lwip/tcp.h"
 
 char WIFI_SSID[] = "";
 char WIFI_PASSWORD[] = "";
