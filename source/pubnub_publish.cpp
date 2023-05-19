@@ -9,17 +9,19 @@
 
 #include "pico/stdlib.h"
 #include "pico/cyw43_arch.h"
-#include "lwip/pbuf.h"
 #include "lwip/altcp_tcp.h"
 #include "lwip/altcp_tls.h"
 #include "lwip/dns.h"
 
-
 char WIFI_SSID[] = "";
 char WIFI_PASSWORD[] = "";
 
+#define PubKey "pub-c-"
+#define SubKey "sub-c-"
+#define channel "my_channel"
+
 #define TLS_CLIENT_SERVER        "ps.pndsn.com"
-#define TLS_CLIENT_HTTP_REQUEST  "POST /publish/pub-c-/sub-c-/0/my_channel/0 HTTP/1.1\r\n" \
+#define TLS_CLIENT_HTTP_REQUEST  "POST /publish/" PubKey "/" SubKey "/0/" channel "/0 HTTP/1.1\r\n" \
                                  "Host: " TLS_CLIENT_SERVER "\r\n" \
                                  "Content-Type: application/json\r\n" \
                                  "Content-Length: %d\r\n" \
@@ -247,6 +249,8 @@ int main() {
         return 1;
     }
    
+   
+
     run_tls_client_test();
     /* sleep a bit to let USB stdio write out any buffer to host */
     sleep_ms(100);
